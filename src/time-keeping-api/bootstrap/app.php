@@ -25,7 +25,7 @@ return Application::configure(basePath: $basePath)
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->use([
-            ValidateAppId::class,
+//            ValidateAppId::class,
         ]);
         $middleware->api(append: [
             ValidateJsonContent::class,

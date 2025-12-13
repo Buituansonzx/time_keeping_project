@@ -37,11 +37,12 @@
     "require": {
         "php": "^8.2",
         "apiato/core": "^13.1",
-        "laravel/passport": "^13.0",
+        "laravel/passport": "^13.4",
         "spatie/laravel-permission": "^6.0",
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.5",
         "brianium/paratest": "^7.4",
         "fakerphp/faker": "^1.19.1",
         "friendsofphp/php-cs-fixer": "^3.0",
@@ -60,8 +61,8 @@
         "psalm/plugin-mockery": "^1.2",
         "psalm/plugin-phpunit": "^0.19.2",
         "roave/security-advisories": "dev-latest",
-        "vimeo/psalm": "^6.0.0",
-        "thecodingmachine/phpstan-safe-rule": "^1.4"
+        "thecodingmachine/phpstan-safe-rule": "^1.4",
+        "vimeo/psalm": "^6.0.0"
     },
     "autoload": {
         "psr-4": {

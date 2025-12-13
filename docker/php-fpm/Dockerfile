@@ -10,24 +10,37 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    default-mysql-client \
+    libzip-dev \
+    libpq-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libwebp-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip opcache
 
 # Install Redis extension
-RUN pecl install redis && docker-php-ext-enable redis
+RUN pecl install redis \
+    && docker-php-ext-enable redis
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy entrypoint script
-COPY docker/php-fpm/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
+# Set working directory
 WORKDIR /var/www/html
 
-# Set entrypoint
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+# Copy application files - Sửa đường dẫn
+COPY src/time-keeping-api/ /var/www/html/
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html/storage \
+    && chmod -R 755 /var/www/html/bootstrap/cache
+
+# Expose port
+EXPOSE 9000
+
+CMD ["php-fpm"]

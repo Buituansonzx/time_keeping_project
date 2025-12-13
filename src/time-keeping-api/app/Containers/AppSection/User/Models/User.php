@@ -4,31 +4,23 @@ namespace App\Containers\AppSection\User\Models;
 
 use App\Containers\AppSection\Authorization\Enums\Role as RoleEnum;
 use App\Containers\AppSection\User\Data\Collections\UserCollection;
-use App\Containers\AppSection\User\Enums\Gender;
 use App\Ship\Parents\Models\UserModel as ParentUserModel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 final class User extends ParentUserModel
 {
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'gender',
-        'birth',
-    ];
+    use HasApiTokens, Notifiable;
+    protected $guarded = [];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'immutable_datetime',
-        'password' => 'hashed',
-        'gender' => Gender::class,
-        'birth' => 'immutable_date',
-    ];
+    CONST EXPIRED_OTP = 5;
+
 
     public function newCollection(array $models = []): UserCollection
     {

@@ -3,9 +3,11 @@
 namespace App\Containers\AppSection\Authentication\Providers;
 
 use App\Ship\Parents\Providers\ServiceProvider as ParentServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\SessionGuard;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Guards\TokenGuard;
+use Laravel\Passport\Passport;
 
 final class AuthServiceProvider extends ParentServiceProvider
 {
@@ -25,6 +27,7 @@ final class AuthServiceProvider extends ParentServiceProvider
          *
          * @return string|null
          */
+        Passport::personalAccessTokensExpireIn(Carbon::now()->addMinutes(15));
         SessionGuard::macro('activeGuard', $method);
         TokenGuard::macro('activeGuard', $method);
     }

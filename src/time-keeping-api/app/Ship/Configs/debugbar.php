@@ -231,7 +231,7 @@ return [
             'hard_limit' => 500,      // After the hard limit, queries are ignored
         ],
         'mail' => [
-            'timeline' => false,  // Add mails to the timeline
+            'timeline' => false,  // Add emails to the timeline
             'show_body' => true,
         ],
         'views' => [
