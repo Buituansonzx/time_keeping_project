@@ -14,14 +14,13 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $roles = [
-            ['name' => 'Admin', 'code' => 'admin'],
-            ['name' => 'Manager', 'code' => 'manager'],
-            ['name' => 'Employee', 'code' => 'employee'],
+            ['name' => 'admin'],
+            ['name' => 'manager'],
+            ['name' => 'employee'],
         ];
         foreach ($roles as $role) {
-            if(!Role::where('code', $role['code'])->exists()){
+            if(!Role::where('name', $role['name'])->exists()){
                 Role::firstOrCreate(
-                    ['code' => $role['code']],
                     ['name' => $role['name']]
                 );
             }

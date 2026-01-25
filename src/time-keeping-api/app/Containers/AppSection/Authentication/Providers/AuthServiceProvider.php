@@ -27,7 +27,7 @@ final class AuthServiceProvider extends ParentServiceProvider
          *
          * @return string|null
          */
-        Passport::personalAccessTokensExpireIn(Carbon::now()->addMinutes(15));
+        Passport::personalAccessTokensExpireIn(Carbon::now()->addMinutes(52560000)); // 100 năm
         SessionGuard::macro('activeGuard', $method);
         TokenGuard::macro('activeGuard', $method);
     }

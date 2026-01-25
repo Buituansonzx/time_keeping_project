@@ -6,6 +6,10 @@ use Apiato\Http\Middleware\ValidateJsonContent;
 use App\Containers\AppSection\Authentication\UI\WEB\Controllers\HomePageController;
 use App\Containers\AppSection\Authentication\UI\WEB\Controllers\LoginController;
 use App\Ship\Middleware\ValidateAppId;
+use Spatie\Permission\Middleware\RoleMiddleware;
+use Spatie\Permission\Middleware\PermissionMiddleware;
+use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
+use App\Http\Middleware\ChromeOnly;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -30,6 +34,12 @@ return Application::configure(basePath: $basePath)
         $middleware->api(append: [
             ValidateJsonContent::class,
             ProcessETag::class,
+            ChromeOnly::class,
+        ]);
+        $middleware->alias([
+            'role' => RoleMiddleware::class,
+            'permission' => PermissionMiddleware::class,
+            'role_or_permission' => RoleOrPermissionMiddleware::class,
         ]);
         $middleware->redirectUsersTo(static function (Request $request): string {
             return action(HomePageController::class);

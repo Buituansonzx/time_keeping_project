@@ -17,28 +17,8 @@ class UserSeeder extends Seeder
         // Define five users; one of them uses the requested email.
         $users = [
             [
-                'name' => 'Admin User',
+                'name' => 'Admin Tuan Son',
                 'email' => 'bson55444@gmail.com',
-                'password' => 'password',
-            ],
-            [
-                'name' => 'User One',
-                'email' => 'user1@example.com',
-                'password' => 'password',
-            ],
-            [
-                'name' => 'User Two',
-                'email' => 'user2@example.com',
-                'password' => 'password',
-            ],
-            [
-                'name' => 'User Three',
-                'email' => 'user3@example.com',
-                'password' => 'password',
-            ],
-            [
-                'name' => 'User Four',
-                'email' => 'user4@example.com',
                 'password' => 'password',
             ],
         ];

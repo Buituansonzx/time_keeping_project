@@ -26,5 +26,3 @@ use App\Containers\AppSection\Authentication\UI\API\Controllers\Login;
 use Illuminate\Support\Facades\Route;
 
 Route::post('auth/login', [Login::class, 'login']);
-
-Route::get('ping', function() { return response()->json(['pong']); })->middleware('auth:api');

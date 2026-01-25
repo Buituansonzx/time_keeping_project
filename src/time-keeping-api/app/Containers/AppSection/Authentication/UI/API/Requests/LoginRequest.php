@@ -13,6 +13,7 @@ final class LoginRequest extends ParentRequest
         return [
             'email' => 'required|email',
             'otp'   => 'nullable|string|size:6',
+            'device_fingerprint' => 'nullable|string',
         ];
     }
 

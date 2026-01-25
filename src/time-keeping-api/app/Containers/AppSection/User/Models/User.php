@@ -4,6 +4,7 @@ namespace App\Containers\AppSection\User\Models;
 
 use App\Containers\AppSection\Authorization\Enums\Role as RoleEnum;
 use App\Containers\AppSection\User\Data\Collections\UserCollection;
+use App\Containers\SharedSection\Device\Models\Device;
 use App\Ship\Parents\Models\UserModel as ParentUserModel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Notifications\Notifiable;
@@ -20,6 +21,8 @@ final class User extends ParentUserModel
     ];
 
     CONST EXPIRED_OTP = 5;
+    CONST STATUS_ACTIVE = 1;
+    CONST STATUS_INACTIVE = 0;
 
 
     public function newCollection(array $models = []): UserCollection
@@ -51,5 +54,10 @@ final class User extends ParentUserModel
         return new Attribute(
             get: static fn (string|null $value): string|null => is_null($value) ? null : strtolower($value),
         );
+    }
+
+    public function devices()
+    {
+        return $this->hasMany(Device::class);
     }
 }
