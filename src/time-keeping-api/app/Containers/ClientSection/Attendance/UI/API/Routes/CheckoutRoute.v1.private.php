@@ -2,9 +2,9 @@
 
 /**
  * @apiGroup           Attendance
- * @apiName            Create
+ * @apiName
  *
- * @api                {POST} /v1/ Create
+ * @api                {POST} /v1/checkout Checkout
  * @apiDescription     Endpoint description here...
  *
  * @apiVersion         1.0.0
@@ -22,9 +22,9 @@
  * }
  */
 
-use App\Containers\ClientSection\Attendance\UI\API\Controllers\Controller;
+use App\Containers\ClientSection\Attendance\UI\API\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('', [Controller::class, 'create'])
-    ->middleware(['auth:api']);
+Route::post('checkout', [AttendanceController::class, 'checkout'])
+    ->middleware(['auth:api', 'check_company_ip']);
 

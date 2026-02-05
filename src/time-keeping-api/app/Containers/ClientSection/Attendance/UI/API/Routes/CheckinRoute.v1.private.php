@@ -2,9 +2,9 @@
 
 /**
  * @apiGroup           Attendance
- * @apiName            Delete
+ * @apiName
  *
- * @api                {DELETE} /v1/:id Delete
+ * @api                {POST} /v1/checkin/:id Checkin
  * @apiDescription     Endpoint description here...
  *
  * @apiVersion         1.0.0
@@ -22,9 +22,9 @@
  * }
  */
 
-use App\Containers\ClientSection\Attendance\UI\API\Controllers\Controller;
+use App\Containers\ClientSection\Attendance\UI\API\Controllers\AttendanceController;
 use Illuminate\Support\Facades\Route;
 
-Route::delete('{id}', [Controller::class, 'delete'])
-    ->middleware(['auth:api']);
+Route::post('checkin', [AttendanceController::class, 'checkin'])
+    ->middleware(['auth:api','check_company_ip']);
 

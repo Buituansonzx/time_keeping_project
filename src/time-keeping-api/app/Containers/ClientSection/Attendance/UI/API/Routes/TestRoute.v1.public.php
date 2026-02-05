@@ -26,5 +26,5 @@ use App\Containers\ClientSection\Attendance\UI\API\Controllers\AttendanceControl
 use Illuminate\Support\Facades\Route;
 
 Route::get('api/ping', [AttendanceController::class, 'test'])
-    ->middleware(['auth:api', 'role:admin']);
+    ->middleware(['auth:api', 'role:admin','check_company_ip']);
 

@@ -8,16 +8,4 @@ use App\Ship\Parents\Models\Model as ParentModel;
 
 final class Attendance extends ParentModel
 {
-    protected $table = 'attendances';
-    protected $guarded = [];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function device()
-    {
-         return $this->belongsTo(Device::class);
-    }
 }

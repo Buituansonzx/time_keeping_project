@@ -6,6 +6,7 @@ use Apiato\Http\Middleware\ValidateJsonContent;
 use App\Containers\AppSection\Authentication\UI\WEB\Controllers\HomePageController;
 use App\Containers\AppSection\Authentication\UI\WEB\Controllers\LoginController;
 use App\Ship\Middleware\ValidateAppId;
+use App\Http\Middleware\CheckCompanyIp;
 use Spatie\Permission\Middleware\RoleMiddleware;
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
@@ -40,6 +41,7 @@ return Application::configure(basePath: $basePath)
             'role' => RoleMiddleware::class,
             'permission' => PermissionMiddleware::class,
             'role_or_permission' => RoleOrPermissionMiddleware::class,
+            'check_company_ip' => CheckCompanyIp::class
         ]);
         $middleware->redirectUsersTo(static function (Request $request): string {
             return action(HomePageController::class);
