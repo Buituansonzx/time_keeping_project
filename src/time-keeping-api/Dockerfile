@@ -34,12 +34,17 @@ RUN chmod u+s /usr/sbin/cron && \
 
 RUN chown -R www-data:www-data /var/www
 
+# Tạo thư mục supervisor log (PHẢI LÀ ROOT)
+RUN mkdir -p /tmp/supervisor/cron \
+    /tmp/supervisor/nginx \
+    /tmp/supervisor/php-fpm \
+    /tmp/supervisor/queue \
+    /tmp/supervisor/websocket \
+    /tmp/supervisor/horizon \
+ && chmod -R 777 /tmp/supervisor
+
 WORKDIR /var/www/html
 USER www-data
-
-# Tạo thư mục supervisor log
-RUN mkdir -p /tmp/supervisor/cron /tmp/supervisor/nginx /tmp/supervisor/php-fpm \
-    /tmp/supervisor/queue /tmp/supervisor/websocket /tmp/supervisor/horizon
 
 EXPOSE 80
 EXPOSE 443
